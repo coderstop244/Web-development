@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>water_gun_snake</title>
+</head>
+<body>
+    <script>
+        //funntion to generate computer choices
+        
+       
+
+        function getComputerChoices(){
+            const choices=['snake','water','gun'];
+            const randomMath=Math.floor(Math.random()*3);
+            return choices[randomMath]
+        }
+
+        //function to win the game
+        function gameWin(userchoice,comchoice){
+            if(userchoice==comchoice){
+                return "It's a tie!"
+            }
+            if(
+                userchoice==='snake'&&comchoice==='water'||
+                userchoice==='water'&&comchoice==='gun'||
+                userchoice==='gun'&&comchoice==='snake'
+            ){
+            return "You win!"
+            
+        }else{
+            return "You lose!"
+        }
+    }
+
+        //function to play the game
+        function playgame(){
+            
+            let userchoice=prompt("Enter your choice")
+            const comchoice=getComputerChoices()
+            console.log(`user input:${userchoice}`)
+            console.log(`user output:${comchoice}`)
+            let result=gameWin(userchoice,comchoice)
+            console.log(result)
+        }
+
+       
+        
+    </script>
+</body>
+</html>
