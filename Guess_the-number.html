@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //generating value between 1 to 100
+     let randomNumber=Math.floor(Math.random()*100+1)//include max too
+     let guesscount=0//intialize guess count
+     
+     while(true){
+        let guessNumber=parseInt(prompt("Enter the number:-",guesscount++))
+        
+     
+     if(isNaN(guessNumber)){
+        console.log("Please enter a valid number!");
+        continue;
+        
+     }
+     if(guessNumber>randomNumber){
+        console.log("numeber is greater")
+     }else if(guessNumber<randomNumber){
+        console.log("Number is smaller ")
+     }else{
+        console.log("You won!")
+        console.log(`You used total counts${guesscount}`)
+        break;
+        
+     }
+    }
+    </script>
+</body>
+</html>
