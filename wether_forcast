@@ -1,1 +1,104 @@
+//html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather App</title>
+    <link rel="stylesheet" href="wheather.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Whether App</h1>
+        <input type="text" id="locationInput" placeholder="Enter city name">
+        <button id="getWeather">Get Weather</button>
+        <div class="whether-result">
+            <h2 id="cityName"></h2>
+            <p id="temperature"></p>
+            <p id="Wind Speed(10 m)"></p>
+            <p id="Wind Direction(120 m)"></p>
+
+            
+    </div>
+
+    </div>
+    <script src="wheather_forcast.js"></script>
+    
+</body>
+</html>
+
+//css
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5); /* Set the background color to be transparent */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adjust the alpha value here for the box shadow transparency */
+    margin-top: 105px;
+}
+h1 {
+    font-size: 24px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.whether-result {
+    margin-top: 20px;
+}
+
+//js
+
+const apiKey = '01b4012ddba74cc3805182853250704';
+const apiUrl = 'http://api.weatherapi.com/v1';
+
+const locationInput = document.getElementById('locationInput');
+const searchButton = document.getElementById('getWeather');
+const cityElement = document.getElementById('cityName');
+const temperatureElement = document.getElementById('temperature');
+const descriptionElement = document.getElementById('description');
+
+searchButton.addEventListener('click', function() {
+    const city = locationInput.value;
+    if (city) {
+        fetchWeather(city);
+    }
+});
+
+function fetchWeather(city) {
+    const requestUrl = `${apiUrl}/current.json?key=${apiKey}&q=${city}`;
+    fetch(requestUrl)
+        .then(response => response.json())
+        .then(data => {
+            cityElement.textContent = data.location.name;
+            temperatureElement.textContent = `${data.current.temp_c}°C`;
+            descriptionElement.textContent = data.current.condition.text;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
